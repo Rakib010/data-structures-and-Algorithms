@@ -41,6 +41,7 @@ void print_linked_list(Node *head)
     }
 };
 
+// sort linked list using 2 pointer technique (bubble sort)
 void sort_linked_list(Node *&head)
 {
     for (Node *i = head; i->next != NULL; i = i->next)

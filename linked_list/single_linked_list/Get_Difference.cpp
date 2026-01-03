@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,45 +13,53 @@ public:
         this->next = NULL;
     }
 };
-
 void insert_at_tail(Node *&head, Node *&tail, int val)
 {
-    // create a new node
     Node *newnode = new Node(val);
-
-    // if the list is empty
     if (head == NULL)
     {
         head = newnode;
         tail = newnode;
         return;
     }
-    // add new node at the end using tail pointer
     tail->next = newnode;
     tail = newnode;
 };
 
-void print_linked_list(Node *head)
+void min_max(Node *head)
 {
+    int maxVal = INT_MIN;
+    int minVal = INT_MAX;
+
     Node *temp = head;
     while (temp != NULL)
     {
-        cout << temp->val << endl;
+        if (temp->val > maxVal)
+            maxVal = temp->val;
+        if (temp->val < minVal)
+            minVal = temp->val;
         temp = temp->next;
     }
-};
+
+    cout << maxVal - minVal << endl;
+}
 
 int main()
 {
-    Node *head = new Node(10);
-    Node *a = new Node(20);
-    Node *tail = new Node(30);
+    Node *head = NULL;
+    Node *tail = NULL;
 
-    head->next = a;
-    a->next = tail;
+    int val;
+    while (true)
+    {
+        cin >> val;
+        if (val == -1)
+        {
+            break;
+        }
+        insert_at_tail(head, tail, val);
+    }
 
-    insert_at_tail(head, tail, 100);
-    print_linked_list(head);
-
+    min_max(head);
     return 0;
 }

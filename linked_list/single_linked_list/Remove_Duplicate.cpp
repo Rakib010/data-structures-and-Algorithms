@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,43 +17,56 @@ public:
 void insert_at_tail(Node *&head, Node *&tail, int val)
 {
     Node *newnode = new Node(val);
-
-    // if the list is empty
     if (head == NULL)
     {
         head = newnode;
         tail = newnode;
         return;
     }
-    // add new node at the end using tail pointer
     tail->next = newnode;
     tail = newnode;
 };
 
+void remove_duplicate(Node *head)
+{
+    Node *cur = head;
+
+    while (cur != NULL)
+    {
+        Node *temp = cur;
+
+        while (temp->next != NULL)
+        {
+            if (temp->next->val == cur->val)
+            {
+                Node *del = temp->next;
+                temp->next = temp->next->next;
+                delete del;
+            }
+            else
+            {
+                temp = temp->next;
+            }
+        }
+        cur = cur->next;
+    }
+}
+
 void print_linked_list(Node *head)
 {
-    Node *temp = head;
-    while (temp != NULL)
+    Node *tmp = head;
+    while (tmp != NULL)
     {
-        cout << temp->val << endl;
-        temp = temp->next;
+        cout << tmp->val << " ";
+        tmp = tmp->next;
     }
 };
 
-void delete_at_head(Node *&head)
-{
-    Node *deleteNode = head;
-    head = head->next;
-    delete deleteNode;
-}
-
 int main()
 {
-    // Initialize head and tail pointers to NULL
     Node *head = NULL;
     Node *tail = NULL;
 
-    // Read user input until -1 is entered
     int val;
     while (true)
     {
@@ -65,7 +77,7 @@ int main()
         }
         insert_at_tail(head, tail, val);
     }
-    delete_at_head(head);
+    remove_duplicate(head);
     print_linked_list(head);
 
     return 0;

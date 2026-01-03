@@ -1,7 +1,7 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Node structure
 class Node
 {
 public:
@@ -15,6 +15,7 @@ public:
     }
 };
 
+// insert at tail
 void insert_at_tail(Node *&head, Node *&tail, int val)
 {
     Node *newnode = new Node(val);
@@ -31,16 +32,15 @@ void insert_at_tail(Node *&head, Node *&tail, int val)
     tail = newnode;
 };
 
-void print_linked_list(Node *head)
+// delete at head
+void delete_at_head(Node *&head)
 {
-    Node *temp = head;
-    while (temp != NULL)
-    {
-        cout << temp->val << endl;
-        temp = temp->next;
-    }
+    Node *deleteNode = head;
+    head = head->next;
+    delete deleteNode;
 };
 
+// delete at tail
 void delete_at_tail(Node *&head, Node *&tail, int idx)
 {
     Node *tmp = head;
@@ -52,6 +52,30 @@ void delete_at_tail(Node *&head, Node *&tail, int idx)
     tmp->next = tmp->next->next;
     delete deleteNode;
     tail = tmp;
+};
+
+// delete at any position
+void delete_at_any_pos(Node *&head, int idx)
+{
+    Node *tmp = head;
+    for (int i = 1; i < idx; i++)
+    {
+        tmp = tmp->next;
+    }
+    Node *deleteNode = tmp->next;
+    tmp->next = tmp->next->next;
+    delete deleteNode;
+}
+
+// display linked list
+void print_linked_list(Node *head)
+{
+    Node *tmp = head;
+    while (tmp != NULL)
+    {
+        cout << tmp->val << " ";
+        tmp = tmp->next;
+    }
 }
 
 int main()
@@ -69,10 +93,12 @@ int main()
         {
             break;
         }
+        // insert node 
         insert_at_tail(head, tail, val);
     }
-    delete_at_tail(head, tail, 3);
+    // delete_at_head(head);
+    // delete_at_tail(head, tail, 2);
+    delete_at_any_pos(head, 1);
     print_linked_list(head);
-
     return 0;
 }

@@ -1,7 +1,7 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Node structure
 class Node
 {
 public:
@@ -15,6 +15,15 @@ public:
     }
 };
 
+// insert_at_head
+void insert_at_head(Node *&head, int val)
+{
+    Node *newnode = new Node(val);
+    newnode->next = head;
+    head = newnode;
+}
+
+// insert_at_tail
 void insert_at_tail(Node *&head, int val)
 {
     Node *newnode = new Node(val);
@@ -32,28 +41,40 @@ void insert_at_tail(Node *&head, int val)
         tmp = tmp->next; // Move to the next node
     }
     tmp->next = newnode;
-};
+}
+
+// insert at specific position
+void insert_at_specific_position()
+{
+}
+
+// display linkedlist
 void print_linked_list(Node *head)
 {
-    Node *temp = head;
-    while (temp != NULL)
+    Node *tmp = head;
+    while (tmp != NULL)
     {
-        cout << temp->val << endl;
-        temp = temp->next;
+        cout << tmp->val << " ";
+        tmp = tmp->next;
     }
-};
+}
 
 int main()
 {
+    // take input manually to create a linked list
     Node *head = new Node(10);
     Node *a = new Node(20);
     Node *b = new Node(30);
 
+    // linking the nodes
     head->next = a;
     a->next = b;
 
+    // insert at head and tail
+    insert_at_head(head, 5);
     insert_at_tail(head, 40);
-    // insert_at_tail(head, 50);
+
+    // display linked list
     print_linked_list(head);
 
     return 0;
