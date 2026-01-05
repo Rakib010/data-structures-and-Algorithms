@@ -51,8 +51,20 @@ void insert_at_tail(Node *&head, Node *&tail, int val)
     tail = newnode;
 };
 
-// 
-
+// Insert at any position
+void insert_at_any_pos(Node *&head, int indx, int val)
+{
+    Node *newnode = new Node(val);
+    Node *tmp = head;
+    for (int i = 0; i < indx; i++)
+    {
+        tmp = tmp->next;
+    }
+    newnode->next = tmp->next;
+    tmp->next->prev = newnode;
+    tmp->next = newnode;
+    newnode->prev = tmp;
+};
 
 // Print linked list forward
 void print_forward(Node *head)
@@ -80,7 +92,7 @@ void print_forward(Node *head)
 
 int main()
 {
-    
+
     Node *head = new Node(10);
     Node *a = new Node(20);
     Node *tail = new Node(30);
@@ -92,6 +104,7 @@ int main()
     tail->prev = a;
 
     insert_at_head(head, tail, 100);
+    insert_at_any_pos(head, 1, 150);
     insert_at_tail(head, tail, 200);
     print_forward(head);
     // print_backward(tail);
