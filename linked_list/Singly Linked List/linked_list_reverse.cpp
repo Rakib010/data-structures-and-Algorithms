@@ -15,6 +15,7 @@ public:
     }
 };
 
+// function to insert a new node at the tail of the linked list
 void insert_at_tail(Node *&head, Node *&tail, int val)
 {
     Node *newnode = new Node(val);
@@ -42,6 +43,20 @@ void print_reverse(Node *tmp)
     cout << tmp->val << " ";
 };
 
+// reverse
+void reverse_linked_list(Node *&head, Node *&tail, Node *current)
+{
+    // base case
+    if (current->next == NULL)
+    {
+        head = current;
+        return;
+    }
+    reverse_linked_list(head, tail, current->next);
+    current->next->next = current;
+    current->next = NULL;
+    tail = current; 
+}
 
 int main()
 {
@@ -61,6 +76,7 @@ int main()
         insert_at_tail(head, tail, val);
     }
 
+    reverse_linked_list(head, tail, head);
     print_reverse(head);
 
     return 0;
