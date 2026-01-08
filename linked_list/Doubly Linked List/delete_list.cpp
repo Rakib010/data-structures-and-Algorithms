@@ -49,18 +49,6 @@ void delete_at_tail(Node *&head, Node *&tail)
     tail->next = NULL;
 }
 
-// Print forward
-void print_forward(Node *head)
-{
-    Node *tmp = head;
-    while (tmp != NULL)
-    {
-        cout << tmp->val << " ";
-        tmp = tmp->next;
-    }
-    cout << endl;
-}
-
 // Delete at specific position
 void delete_at_position(Node *&head, Node *&tail, int pos)
 {
@@ -94,6 +82,19 @@ void insert_at_tail(Node *&head, Node *&tail, int val)
     newnode->prev = tail;
     tail = newnode;
 };
+
+// Print forward
+void print_forward(Node *head)
+{
+    Node *tmp = head;
+    while (tmp != NULL)
+    {
+        cout << tmp->val << " ";
+        tmp = tmp->next;
+    }
+    cout << endl;
+}
+
 // main function
 int main()
 {
